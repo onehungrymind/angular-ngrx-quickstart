@@ -3,21 +3,21 @@ import { Injector, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
-import { DashComponent } from './dash/dash.component';
 import { createCustomElement } from '@angular/elements';
+import { TotalsComponent } from '@workspace/totals-view';
 
 @NgModule({
-  declarations: [AppComponent, DashComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, NxModule.forRoot()],
   providers: [],
-  entryComponents: [DashComponent]
+  entryComponents: [TotalsComponent]
 })
 export class AppModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    const el = createCustomElement(DashComponent, {injector: this.injector});
-    customElements.define('embedded-dashboard', el);
+    const el = createCustomElement(TotalsComponent, {injector: this.injector});
+    customElements.define('totals-view', el);
   }
 
 }

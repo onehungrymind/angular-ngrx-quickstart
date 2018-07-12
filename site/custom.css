@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+}
+
+.box {
+  border: 2px solid;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.native {
+  border-color: limegreen;
+}
+
+.angular {
+  border-color: blue;
+  margin-left: 15px;
+}
