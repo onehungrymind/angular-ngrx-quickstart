@@ -2,7 +2,7 @@
 
 A simple REST app built using Angular, Angular Material and the Angular CLI.
 
-![Angular Component Architecture App](src/assets/img/readme-screenshot.png)
+![Angular Component Architecture App](apps/dashboard/src/assets/img/readme-screenshot.png)
 
 This app demonstrates how to structure and handle communication between components in an Angular app.
 
