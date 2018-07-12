@@ -25,7 +25,11 @@
             "styles": [
               "apps/dashboard/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -178,6 +182,120 @@
               "libs/totals-view/tsconfig.lib.json",
               "libs/totals-view/tsconfig.spec.json"
             ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "embed": {
+      "root": "apps/embed/",
+      "sourceRoot": "apps/embed/src",
+      "projectType": "application",
+      "prefix": "workspace",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/embed",
+            "index": "apps/embed/src/index.html",
+            "main": "apps/embed/src/main.ts",
+            "polyfills": "apps/embed/src/polyfills.ts",
+            "tsConfig": "apps/embed/tsconfig.app.json",
+            "assets": [
+              "apps/embed/src/favicon.ico",
+              "apps/embed/src/assets"
+            ],
+            "styles": [
+              "apps/embed/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/embed/src/environments/environment.ts",
+                  "with": "apps/embed/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "embed:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "embed:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "embed:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/embed/src/test.ts",
+            "polyfills": "apps/embed/src/polyfills.ts",
+            "tsConfig": "apps/embed/tsconfig.spec.json",
+            "karmaConfig": "apps/embed/karma.conf.js",
+            "styles": [
+              "apps/embed/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/embed/src/favicon.ico",
+              "apps/embed/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/embed/tsconfig.app.json",
+              "apps/embed/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "embed-e2e": {
+      "root": "apps/embed-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/embed-e2e/protractor.conf.js",
+            "devServerTarget": "embed:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/embed-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

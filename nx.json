@@ -19,6 +19,12 @@
     },
     "totals-view": {
       "tags": []
+    },
+    "embed": {
+      "tags": []
+    },
+    "embed-e2e": {
+      "tags": []
     }
   }
 }
