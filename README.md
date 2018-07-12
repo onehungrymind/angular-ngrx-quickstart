@@ -1,34 +1,40 @@
-# Workspace
+# Angular Component Architecture
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).
+A simple REST app built using Angular, Angular Material and the Angular CLI.
 
-## Nrwl Extensions for Angular (Nx)
+![Angular Component Architecture App](src/assets/img/readme-screenshot.png)
 
-<a href="https://nrwl.io/nx"><img src="https://preview.ibb.co/mW6sdw/nx_logo.png"></a>
+This app demonstrates how to structure and handle communication between components in an Angular app.
 
-Nx is an open source toolkit for enterprise Angular applications.
+## Prerequisites
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- Node.js and NPM – we recommend using [NVM (Linux/Mac)](https://github.com/creationix/nvm) or [NVM-Windows (Windows)](https://github.com/coreybutler/nvm-windows)
+- Install Angular CLI via `npm i -g @angular/cli`
 
-Nx is designed to help you create and build enterprise grade Angular applications. It provides an opinionated approach to application project structure and patterns.
+### Getting Started
 
-## Quick Start & Documentation
+There are two main parts to this application. The first is the REST API, for which we are using `json-server`. The second part is the Angular 2 application server which we will start using `ng serve`.  
 
-[Watch a 5-minute video on how to get started with Nx.](http://nrwl.io/nx)
+To get started run the commands below.
 
-## Generate your first application
+```bash
+$ git clone https://github.com/onehungrymind/angular-component-architecture.git
+$ cd angular-component-architecture
+$ npm install
+$ npm start
+```
 
-Run `ng generate app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace. Read more [here](http://nrwl.io/nx).
+Then navigate to [http://localhost:4200](http://localhost:4200/items) in your browser.
 
-## Development server
-
-Run `ng serve --app=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+> Note: the above terminal commands are for Mac. Remember to substitute the appropriate commands for your OS.
 
 ## Code scaffolding
 
-Run `ng generate component component-name --app=myapp` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
 
 ## Build
 
-Run `ng build --app=myapp` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Running unit tests
 
@@ -36,9 +42,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/). 
 Before running the tests make sure you are serving the app via `ng serve`.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
