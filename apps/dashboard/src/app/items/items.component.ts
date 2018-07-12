@@ -18,7 +18,7 @@ export class ItemsComponent implements OnInit {
   }
 
   resetCurrentItem() {
-    this.currentItem = { id: null, name: '', description: '' };
+    this.currentItem = { id: null, name: '', price: 0, description: '' };
   }
 
   selectItem(item) {

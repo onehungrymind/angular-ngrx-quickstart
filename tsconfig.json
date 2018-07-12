@@ -18,6 +18,9 @@
     "paths": {
       "@workspace/common-data": [
         "libs/common-data/src/index.ts"
+      ],
+      "@workspace/totals-view": [
+        "libs/totals-view/src/index.ts"
       ]
     }
   },

@@ -23,7 +23,7 @@ export class WidgetsComponent implements OnInit {
   }
 
   reset() {
-    this.currentWidget = { id: null, name: '', description: ''};
+    this.currentWidget = { id: null, name: '', price: 0, description: ''};
   }
 
   selectWidget(widget) {

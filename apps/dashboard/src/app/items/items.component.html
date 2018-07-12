@@ -1,8 +1,12 @@
 <div class="container">
-  <app-items-list class="col-50" [items]="items"
-                  (selected)="selectItem($event)"
-                  (deleted)="deleteItem($event)">
-  </app-items-list>
+  <div class="col-50">
+    <app-items-total [items]="items"></app-items-total>
+
+    <app-items-list [items]="items"
+                    (selected)="selectItem($event)"
+                    (deleted)="deleteItem($event)">
+    </app-items-list>
+  </div>
 
   <app-item-detail class="col-50" [item]="currentItem"
                    (saved)="saveItem($event)"

@@ -144,6 +144,34 @@
           }
         }
       }
+    },
+    "totals-view": {
+      "root": "libs/totals-view",
+      "sourceRoot": "libs/totals-view/src",
+      "projectType": "library",
+      "prefix": "workspace",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/totals-view/src/test.ts",
+            "tsConfig": "libs/totals-view/tsconfig.spec.json",
+            "karmaConfig": "libs/totals-view/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/totals-view/tsconfig.lib.json",
+              "libs/totals-view/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

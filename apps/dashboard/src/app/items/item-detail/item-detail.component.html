@@ -3,7 +3,7 @@
     <mat-card-title>
       <h1>
         <span *ngIf="selectedItem.id; else prompt">Editing {{originalName}}</span>
-        <ng-template #prompt>Create</ng-template>
+        <ng-template #prompt>Create Item</ng-template>
       </h1>
     </mat-card-title>
   </mat-card-header>
@@ -11,6 +11,9 @@
     <mat-card-content>
       <mat-form-field class="full-width">
         <input matInput placeholder="Name" [(ngModel)]="selectedItem.name" type="text" name="name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Price" [(ngModel)]="selectedItem.price" type="text" name="price">
       </mat-form-field>
       <mat-form-field class="full-width">
         <input matInput placeholder="Description" [(ngModel)]="selectedItem.description" type="text" name="description">
