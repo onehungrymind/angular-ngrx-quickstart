@@ -16,6 +16,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@workspace/common-data": [
+        "libs/common-data/src/index.ts"
+      ]
     }
   },
   "exclude": [

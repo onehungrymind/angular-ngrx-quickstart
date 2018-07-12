@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WidgetsService } from '../core/widgets.service';
-import { Widget } from '../core/widget.model';
+import { Widget, WidgetsService } from '@workspace/common-data';
 
 @Component({
   selector: 'app-widgets',

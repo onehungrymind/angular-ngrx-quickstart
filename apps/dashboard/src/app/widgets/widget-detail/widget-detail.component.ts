@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Widget } from '../../core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Widget } from '@workspace/common-data';
 
 @Component({
   selector: 'app-widget-detail',

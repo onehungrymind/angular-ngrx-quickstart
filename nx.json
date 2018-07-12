@@ -13,6 +13,9 @@
     },
     "dashboard-e2e": {
       "tags": []
+    },
+    "common-data": {
+      "tags": []
     }
   }
 }

@@ -5,18 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
-
-import { ItemsService, WidgetsService } from './core';
+import { CommonDataModule } from '@workspace/common-data';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
-import { HomeComponent } from './home/home.component';
 import { WidgetsComponent } from './widgets/widgets.component';
 import { WidgetDetailComponent } from './widgets/widget-detail/widget-detail.component';
 import { WidgetsListComponent } from './widgets/widgets-list/widgets-list.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,11 +31,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpClientModule,
     AppRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    CommonDataModule
   ],
-  providers: [ItemsService, WidgetsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

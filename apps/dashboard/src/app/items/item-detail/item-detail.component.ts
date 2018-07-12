@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Item } from '../../core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Item } from '@workspace/common-data';
 
 @Component({
   selector: 'app-item-detail',

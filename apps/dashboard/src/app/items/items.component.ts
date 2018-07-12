@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsService, Item } from '../core';
+import { Item, ItemsService } from '@workspace/common-data';
 
 @Component({
   selector: 'app-items',

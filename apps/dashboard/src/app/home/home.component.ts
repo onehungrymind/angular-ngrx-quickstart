@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, ItemsService, Widget, WidgetsService } from '../core';
+import { Item, ItemsService, Widget, WidgetsService } from '@workspace/common-data';
 
 @Component({
   selector: 'app-home',
