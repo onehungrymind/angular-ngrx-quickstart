@@ -151,6 +151,18 @@
       "projectType": "library",
       "prefix": "workspace",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/totals-view/tsconfig.lib.json",
+            "project": "libs/totals-view/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/totals-view/ng-package.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
