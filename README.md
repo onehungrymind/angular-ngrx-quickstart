@@ -28,6 +28,15 @@ Then navigate to [http://localhost:4200](http://localhost:4200/items) in your br
 
 > Note: the above terminal commands are for Mac. Remember to substitute the appropriate commands for your OS.
 
+## Generating Custom Elements
+Angular has the ability to turn a component into a standalone custom element and embed that in an HTML document.
+
+Simply run `npm run build:elements` to generate a standalone element. 
+
+This will run an `ng build`, concatenate the resulting scripts into one file, and copy that file to the `site` directory.
+
+Once that script is finished, simply serve the `site` directory.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
