@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsService } from '../core/items.service';
-import { Item } from '../core/item.model';
+import { Item, ItemsService, Widget, WidgetsService } from '../core';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +9,24 @@ import { Item } from '../core/item.model';
 })
 export class HomeComponent implements OnInit {
   items: Item[];
+  widgets: Widget[];
 
-  constructor(private itemsService: ItemsService) { }
+  constructor(private itemsService: ItemsService,
+              private widgetsService: WidgetsService) {
+  }
 
   ngOnInit() {
     this.getItems();
+    this.getWidgets();
   }
 
   getItems() {
     this.itemsService.all()
       .subscribe((items: Item[]) => this.items = items);
+  }
+
+  getWidgets() {
+    this.widgetsService.all()
+      .subscribe((widgets: Widget[]) => this.widgets = widgets);
   }
 }

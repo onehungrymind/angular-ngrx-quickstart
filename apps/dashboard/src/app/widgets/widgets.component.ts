@@ -14,8 +14,13 @@ export class WidgetsComponent implements OnInit {
   constructor(private widgetsService: WidgetsService) { }
 
   ngOnInit() {
-    this.widgets = this.widgetsService.widgets;
+    this.getWidgets();
     this.reset();
+  }
+
+  getWidgets() {
+    this.widgetsService.all()
+      .subscribe((widgets: Widget[]) => this.widgets = widgets);
   }
 
   reset() {
