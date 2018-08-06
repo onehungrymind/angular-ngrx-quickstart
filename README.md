@@ -1,8 +1,8 @@
-# Angular Component Architecture
+# Angular NGRX Quickstartchitecture
 
-A simple REST app built using Angular, Angular Material and the Angular CLI.
+A simple REST app built using Angular, Angular Material, NGRX, and the Angular CLI via Nrwl.
 
-![Angular Component Architecture App](apps/dashboard/src/assets/img/readme-screenshot.png)
+![Angular NGRX Quickstart App](apps/dashboard/src/assets/img/readme-screenshot.png)
 
 This app demonstrates how to structure and handle communication between components in an Angular app.
 
@@ -18,8 +18,8 @@ There are two main parts to this application. The first is the REST API, for whi
 To get started run the commands below.
 
 ```bash
-$ git clone https://github.com/onehungrymind/angular-component-architecture.git
-$ cd angular-component-architecture
+$ git clone https://github.com/onehungrymind/angular-ngrx-quickstart.git
+$ cd angular-ngrx-quickstart
 $ npm install
 $ npm start
 ```

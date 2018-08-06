@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular Component Architecture';
+  title = 'Angular NGRX Quickstartchitecture';
   links = [
     { path: '/home', icon: 'home', label: 'Home'},
     { path: '/items', icon: 'list', label: 'Items'},
