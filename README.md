@@ -1,4 +1,4 @@
-# Angular NGRX Quickstartchitecture
+# Angular NGRX Quickstart
 
 A simple REST app built using Angular, Angular Material, NGRX, and the Angular CLI via Nrwl.
 
