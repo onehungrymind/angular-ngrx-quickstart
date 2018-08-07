@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Item, ItemsService } from '@workspace/common-data';
+import { ActionsSubject, select, Store } from '@ngrx/store';
+import { ItemsState } from '../../../../../libs/common-data/src/lib/state/items.reducer';
+import * as ItemsActions from '../../../../../libs/common-data/src/lib/state/items.actions';
+import { filter, tap } from 'rxjs/operators';
+import { ItemsActionTypes } from '../../../../../libs/common-data/src/lib/state/items.actions';
+import { selectAllItems } from '../../../../../libs/common-data/src/lib/state';
 
 @Component({
   selector: 'app-items',
@@ -10,11 +16,24 @@ export class ItemsComponent implements OnInit {
   items: Item[];
   currentItem: Item;
 
-  constructor(private itemsService: ItemsService) { }
+  constructor(private itemsService: ItemsService, private store: Store<ItemsState>, private actions$: ActionsSubject) { }
 
   ngOnInit() {
     this.getItems();
+    this.handleActions();
     this.resetCurrentItem();
+  }
+
+  handleActions() {
+    this.actions$.pipe(
+      filter(action =>
+        action.type === ItemsActionTypes.AddItem
+        || action.type === ItemsActionTypes.UpdateItem
+        || action.type === ItemsActionTypes.DeleteItem
+      ),
+      tap(_ => this.resetCurrentItem())
+    )
+    .subscribe();
   }
 
   resetCurrentItem() {
@@ -30,39 +49,21 @@ export class ItemsComponent implements OnInit {
   }
 
   getItems() {
-    this.itemsService.all()
-      .subscribe((items: Item[]) => this.items = items);
+    this.store.pipe(select(selectAllItems))
+      .subscribe(items => this.items = items);
+
+    this.store.dispatch(new ItemsActions.LoadItems());
   }
 
   saveItem(item) {
     if (!item.id) {
-      this.createItem(item);
+      this.store.dispatch(new ItemsActions.AddItem(item));
     } else {
-      this.updateItem(item);
+      this.store.dispatch(new ItemsActions.UpdateItem(item));
     }
   }
 
-  createItem(item) {
-    this.itemsService.create(item)
-      .subscribe(response => {
-        this.getItems();
-        this.resetCurrentItem();
-      });
-  }
-
-  updateItem(item) {
-    this.itemsService.update(item)
-      .subscribe(response => {
-        this.getItems();
-        this.resetCurrentItem();
-      });
-  }
-
   deleteItem(item) {
-    this.itemsService.delete(item)
-      .subscribe(response => {
-        this.getItems();
-        this.resetCurrentItem();
-      });
+    this.store.dispatch(new ItemsActions.DeleteItem(item));
   }
 }
