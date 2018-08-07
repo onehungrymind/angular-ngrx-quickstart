@@ -18,6 +18,10 @@ import { WidgetDetailComponent } from './widgets/widget-detail/widget-detail.com
 import { WidgetsListComponent } from './widgets/widgets-list/widgets-list.component';
 import { ItemsTotalComponent } from './items/items-total/items-total.component';
 import { WidgetsTotalComponent } from './widgets/widgets-total/widgets-total.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { DataPersistence, NxModule } from '@nrwl/nx';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,13 @@ import { WidgetsTotalComponent } from './widgets/widgets-total/widgets-total.com
     AppRoutingModule,
     AppMaterialModule,
     CommonDataModule,
-    TotalsViewModule
+    TotalsViewModule,
+    NxModule.forRoot(),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 5
+    }),
   ],
   bootstrap: [AppComponent]
 })
