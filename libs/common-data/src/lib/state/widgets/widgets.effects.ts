@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import {
-  WidgetsActions,
-  WidgetsActionTypes,
-  LoadWidgets,
-  WidgetsLoaded, WidgetUpdated, WidgetDeleted, AddWidget, UpdateWidget, DeleteWidget, WidgetAdded
-} from './widgets.actions';
-import { WidgetsState } from './widgets.reducer';
 import { DataPersistence } from '@nrwl/nx';
-import { WidgetsService } from '../widgets/widgets.service';
 import { map } from 'rxjs/operators';
-import { Widget } from '../widgets/widget.model';
 
-@Injectable()
+import {
+  AddWidget,
+  DeleteWidget,
+  LoadWidgets,
+  UpdateWidget,
+  WidgetAdded,
+  WidgetDeleted,
+  WidgetsActionTypes,
+  WidgetsLoaded,
+  WidgetUpdated
+} from './widgets.actions';
+import { Widget } from '../../core/widgets/widget.model';
+import { WidgetsState } from './widgets.reducer';
+import { WidgetsService } from '../../core/widgets/widgets.service';
+
+@Injectable({providedIn: 'root'})
 export class WidgetsEffects {
   @Effect() effect$ = this.actions$.ofType(WidgetsActionTypes.WidgetsAction);
 

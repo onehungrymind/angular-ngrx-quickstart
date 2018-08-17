@@ -3,15 +3,15 @@ import {
   createFeatureSelector,
   ActionReducerMap,
 } from '@ngrx/store';
-import * as fromItems from './items.reducer';
-import * as fromWidgets from './widgets.reducer';
+import * as fromItems from './items/items.reducer';
+import * as fromWidgets from './widgets/widgets.reducer';
 
-export interface ItemsState {
+export interface AppState {
   items: fromItems.ItemsState;
   widgets: fromWidgets.WidgetsState
 }
 
-export const reducers: ActionReducerMap<ItemsState> = {
+export const reducers: ActionReducerMap<AppState> = {
   items: fromItems.itemsReducer,
   widgets: fromWidgets.widgetsReducer
 };

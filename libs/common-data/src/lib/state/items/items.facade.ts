@@ -3,7 +3,7 @@ import { ActionsSubject, select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { ItemsState } from './items.reducer';
 import { ItemsActionTypes } from './items.actions';
-import { selectAllItems } from './index';
+import { selectAllItems } from '../index';
 import * as ItemsActions from './items.actions';
 
 @Injectable({
