@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Widget } from './widget.model';
+import { Item } from './item.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-const BASE_URL = 'http://localhost:3000/widgets/';
+const BASE_URL = 'http://localhost:3000/items/';
 const HEADER = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
-@Injectable()
-export class WidgetsService {
+@Injectable({providedIn: 'root'})
+export class ItemsService {
   constructor(private http: HttpClient) {
   }
 
@@ -18,16 +18,16 @@ export class WidgetsService {
     return this.http.get(`${BASE_URL}${id}`);
   }
 
-  create(widget: Widget) {
-    return this.http.post(`${BASE_URL}`, JSON.stringify(widget), HEADER);
+  create(item: Item) {
+    return this.http.post(`${BASE_URL}`, JSON.stringify(item), HEADER);
   }
 
-  update(widget: Widget) {
-    return this.http.patch(`${BASE_URL}${widget.id}`, JSON.stringify(widget), HEADER);
+  update(item: Item) {
+    return this.http.patch(`${BASE_URL}${item.id}`, JSON.stringify(item), HEADER);
   }
 
-  delete(widget: Widget) {
-    return this.http.delete(`${BASE_URL}${widget.id}`);
+  delete(item: Item) {
+    return this.http.delete(`${BASE_URL}${item.id}`);
   }
 
   search(term: string) {

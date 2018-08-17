@@ -44,12 +44,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppMaterialModule,
     CommonDataModule,
     TotalsViewModule,
-    NxModule.forRoot(),
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 5
-    }),
   ],
   bootstrap: [AppComponent]
 })
