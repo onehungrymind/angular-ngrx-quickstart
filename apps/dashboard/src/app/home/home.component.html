@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-50">
-    <app-items-total [items]="items"></app-items-total>
-    <app-items-list [items]="items" [readonly]="true"></app-items-list>
+    <app-items-total [items]="items$ | async"></app-items-total>
+    <app-items-list [items]="items$ | async" [readonly]="true"></app-items-list>
   </div>
 
   <div class="col-50">

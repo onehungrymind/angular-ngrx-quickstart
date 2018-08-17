@@ -1,8 +1,8 @@
 <div class="container">
   <div class="col-50">
-    <app-items-total [items]="items"></app-items-total>
+    <app-items-total [items]="items$ | async"></app-items-total>
 
-    <app-items-list [items]="items"
+    <app-items-list [items]="items$ | async"
                     (selected)="selectItem($event)"
                     (deleted)="deleteItem($event)">
     </app-items-list>
@@ -10,6 +10,6 @@
 
   <app-item-detail class="col-50" [item]="currentItem"
                    (saved)="saveItem($event)"
-                   (cancelled)="cancel($event)">
+                   (cancelled)="resetCurrentItem($event)">
   </app-item-detail>
 </div>
