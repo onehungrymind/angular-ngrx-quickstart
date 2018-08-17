@@ -1,5 +1,10 @@
+import { select, Store } from '@ngrx/store';
+import { ItemsActionTypes } from '../../../../../libs/common-data/src/lib/state/items.actions';
+import * as ItemsActions from '../../../../../libs/common-data/src/lib/state/items.actions';
+import { ItemsState } from '../../../../../libs/common-data/src/lib/state/items.reducer';
 import { Component, OnInit } from '@angular/core';
 import { Item, ItemsService, Widget, WidgetsService } from '@workspace/common-data';
+import { selectAllItems } from '../../../../../libs/common-data/src/lib/state';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +17,9 @@ export class HomeComponent implements OnInit {
   widgets: Widget[];
 
   constructor(private itemsService: ItemsService,
-              private widgetsService: WidgetsService) {
+              private widgetsService: WidgetsService,
+              private store: Store<ItemsState>
+            ) {
   }
 
   ngOnInit() {
@@ -21,8 +28,10 @@ export class HomeComponent implements OnInit {
   }
 
   getItems() {
-    this.itemsService.all()
-      .subscribe((items: Item[]) => this.items = items);
+    this.store.pipe(select(selectAllItems))
+      .subscribe(items => this.items = items);
+
+    this.store.dispatch(new ItemsActions.LoadItems());
   }
 
   getWidgets() {
