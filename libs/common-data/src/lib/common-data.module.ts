@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { itemsReducer, initialState as itemsInitialState } from './state/items.reducer';
 import { ItemsEffects } from './state/items.effects';
+import { ItemsFacade } from './state/items.facade';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ItemsEffects } from './state/items.effects';
   providers: [
     ItemsService,
     WidgetsService,
-    ItemsEffects
+    ItemsEffects,
+    ItemsFacade
   ],
   exports: [
     StoreModule,

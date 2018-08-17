@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, ItemsService } from '@workspace/common-data';
-import { ActionsSubject, select, Store } from '@ngrx/store';
-import { ItemsState } from '../../../../../libs/common-data/src/lib/state/items.reducer';
-import * as ItemsActions from '../../../../../libs/common-data/src/lib/state/items.actions';
-import { filter, tap } from 'rxjs/operators';
-import { ItemsActionTypes } from '../../../../../libs/common-data/src/lib/state/items.actions';
-import { selectAllItems } from '../../../../../libs/common-data/src/lib/state';
+import { Observable } from 'rxjs';
+import { Item, ItemsFacade } from '@workspace/common-data';
 
 @Component({
   selector: 'app-items',
@@ -13,27 +8,15 @@ import { selectAllItems } from '../../../../../libs/common-data/src/lib/state';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
-  items: Item[];
+  items$: Observable<Item[]> = this.itemsFacade.allItems$;
   currentItem: Item;
 
-  constructor(private itemsService: ItemsService, private store: Store<ItemsState>, private actions$: ActionsSubject) { }
+  constructor(private itemsFacade: ItemsFacade,) { }
 
   ngOnInit() {
-    this.getItems();
-    this.handleActions();
+    this.itemsFacade.loadAll();
+    this.itemsFacade.mutations$.subscribe(_ => this.resetCurrentItem());
     this.resetCurrentItem();
-  }
-
-  handleActions() {
-    this.actions$.pipe(
-      filter(action =>
-        action.type === ItemsActionTypes.AddItem
-        || action.type === ItemsActionTypes.UpdateItem
-        || action.type === ItemsActionTypes.DeleteItem
-      ),
-      tap(_ => this.resetCurrentItem())
-    )
-    .subscribe();
   }
 
   resetCurrentItem() {
@@ -44,26 +27,15 @@ export class ItemsComponent implements OnInit {
     this.currentItem = item;
   }
 
-  cancel(item) {
-    this.resetCurrentItem();
-  }
-
-  getItems() {
-    this.store.pipe(select(selectAllItems))
-      .subscribe(items => this.items = items);
-
-    this.store.dispatch(new ItemsActions.LoadItems());
-  }
-
   saveItem(item) {
     if (!item.id) {
-      this.store.dispatch(new ItemsActions.AddItem(item));
+      this.itemsFacade.addItem(item);
     } else {
-      this.store.dispatch(new ItemsActions.UpdateItem(item));
+      this.itemsFacade.updateItem(item);
     }
   }
 
   deleteItem(item) {
-    this.store.dispatch(new ItemsActions.DeleteItem(item));
+    this.itemsFacade.deleteItem(item);
   }
 }

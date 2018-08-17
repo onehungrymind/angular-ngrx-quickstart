@@ -1,10 +1,6 @@
-import { select, Store } from '@ngrx/store';
-import { ItemsActionTypes } from '../../../../../libs/common-data/src/lib/state/items.actions';
-import * as ItemsActions from '../../../../../libs/common-data/src/lib/state/items.actions';
-import { ItemsState } from '../../../../../libs/common-data/src/lib/state/items.reducer';
 import { Component, OnInit } from '@angular/core';
-import { Item, ItemsService, Widget, WidgetsService } from '@workspace/common-data';
-import { selectAllItems } from '../../../../../libs/common-data/src/lib/state';
+import { Item, ItemsFacade, Widget, WidgetsService } from '@workspace/common-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,25 +9,18 @@ import { selectAllItems } from '../../../../../libs/common-data/src/lib/state';
 
 })
 export class HomeComponent implements OnInit {
-  items: Item[];
+  items$: Observable<Item[]> = this.itemsFacade.allItems$;
+
   widgets: Widget[];
 
-  constructor(private itemsService: ItemsService,
-              private widgetsService: WidgetsService,
-              private store: Store<ItemsState>
-            ) {
-  }
+  constructor(
+    private itemsFacade: ItemsFacade,
+    private widgetsService: WidgetsService
+  ) {}
 
   ngOnInit() {
-    this.getItems();
+    this.itemsFacade.loadAll();
     this.getWidgets();
-  }
-
-  getItems() {
-    this.store.pipe(select(selectAllItems))
-      .subscribe(items => this.items = items);
-
-    this.store.dispatch(new ItemsActions.LoadItems());
   }
 
   getWidgets() {
