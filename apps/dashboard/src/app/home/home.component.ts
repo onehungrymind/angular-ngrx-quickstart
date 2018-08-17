@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, ItemsFacade, Widget, WidgetsService } from '@workspace/common-data';
+import { Item, ItemsFacade, Widget, WidgetsFacade } from '@workspace/common-data';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,21 +10,15 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   items$: Observable<Item[]> = this.itemsFacade.allItems$;
-
-  widgets: Widget[];
+  widgets$: Observable<Widget[]> = this.widgetsFacade.allWidgets$;
 
   constructor(
     private itemsFacade: ItemsFacade,
-    private widgetsService: WidgetsService
+    private widgetsFacade: WidgetsFacade
   ) {}
 
   ngOnInit() {
     this.itemsFacade.loadAll();
-    this.getWidgets();
-  }
-
-  getWidgets() {
-    this.widgetsService.all()
-      .subscribe((widgets: Widget[]) => this.widgets = widgets);
+    this.widgetsFacade.loadAll();
   }
 }
