@@ -5,3 +5,7 @@ mat-list-item:not(:first-of-type) {
 .symbol {
   color: #777;
 }
+
+.price {
+  float: right;
+}
