@@ -5,7 +5,7 @@
   </div>
 
   <div class="col-50">
-    <app-widgets-total [widgets]="widgets"></app-widgets-total>
-    <app-widgets-list [widgets]="widgets" [readonly]="true"></app-widgets-list>
+    <app-widgets-total [widgets]="widgets$ | async"></app-widgets-total>
+    <app-widgets-list [widgets]="widgets$ | async" [readonly]="true"></app-widgets-list>
   </div>
 </div>

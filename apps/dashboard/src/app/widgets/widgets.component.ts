@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Widget, WidgetsService } from '@workspace/common-data';
+import { Widget, WidgetsFacade } from '@workspace/common-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-widgets',
@@ -7,19 +8,15 @@ import { Widget, WidgetsService } from '@workspace/common-data';
   styleUrls: ['./widgets.component.css']
 })
 export class WidgetsComponent implements OnInit {
+  widgets$: Observable<Widget[]> = this.widgetsFacade.allWidgets$;
   currentWidget: Widget;
-  widgets: Widget[];
 
-  constructor(private widgetsService: WidgetsService) { }
+  constructor(private widgetsFacade: WidgetsFacade) { }
 
   ngOnInit() {
-    this.getWidgets();
+    this.widgetsFacade.loadAll();
+    this.widgetsFacade.mutations$.subscribe(_ => this.reset());
     this.reset();
-  }
-
-  getWidgets() {
-    this.widgetsService.all()
-      .subscribe((widgets: Widget[]) => this.widgets = widgets);
   }
 
   reset() {
@@ -30,15 +27,15 @@ export class WidgetsComponent implements OnInit {
     this.currentWidget = widget;
   }
 
-  deleteWidget(widget) {
-    console.log('DELETING', widget)
-  }
-
   saveWidget(widget) {
-    console.log('SAVING', widget);
+    if (!widget.id) {
+      this.widgetsFacade.addWidget(widget);
+    } else {
+      this.widgetsFacade.updateWidget(widget);
+    }
   }
 
-  cancel(widget) {
-    this.reset();
+  deleteWidget(widget) {
+    this.widgetsFacade.deleteWidget(widget);
   }
 }
