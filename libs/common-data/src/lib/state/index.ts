@@ -1,8 +1,5 @@
-import {
-  createSelector,
-  createFeatureSelector,
-  ActionReducerMap,
-} from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+
 import * as fromItems from './items/items.reducer';
 
 export interface AppState {

@@ -3,6 +3,8 @@ import { Actions, Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { map } from 'rxjs/operators';
 
+import { Item } from '../../core/items/item.model';
+import { ItemsService } from '../../core/items/items.service';
 import {
   AddItem,
   DeleteItem,
@@ -12,11 +14,9 @@ import {
   ItemsLoaded,
   ItemUpdated,
   LoadItems,
-  UpdateItem
+  UpdateItem,
 } from './items.actions';
-import { Item } from '../../core/items/item.model';
 import { ItemsState } from './items.reducer';
-import { ItemsService } from '../../core/items/items.service';
 
 @Injectable({providedIn: 'root'})
 export class ItemsEffects {
