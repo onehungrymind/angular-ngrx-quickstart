@@ -7,7 +7,6 @@ import { NxModule } from '@nrwl/nx';
 
 import { reducers } from './index';
 import { ItemsEffects } from './items/items.effects';
-import { WidgetsEffects } from './widgets/widgets.effects';
 
 @NgModule({
   imports: [
@@ -15,7 +14,7 @@ import { WidgetsEffects } from './widgets/widgets.effects';
     NxModule.forRoot(),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 5 }),
-    EffectsModule.forRoot([ItemsEffects, WidgetsEffects]),
+    EffectsModule.forRoot([ItemsEffects]),
   ],
   declarations: []
 })

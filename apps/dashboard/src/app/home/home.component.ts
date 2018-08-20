@@ -10,15 +10,12 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   items$: Observable<Item[]> = this.itemsFacade.allItems$;
-  widgets$: Observable<Widget[]> = this.widgetsFacade.allWidgets$;
 
   constructor(
-    private itemsFacade: ItemsFacade,
-    private widgetsFacade: WidgetsFacade
+    private itemsFacade: ItemsFacade
   ) {}
 
   ngOnInit() {
     this.itemsFacade.loadAll();
-    this.widgetsFacade.loadAll();
   }
 }

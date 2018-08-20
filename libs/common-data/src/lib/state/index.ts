@@ -4,16 +4,13 @@ import {
   ActionReducerMap,
 } from '@ngrx/store';
 import * as fromItems from './items/items.reducer';
-import * as fromWidgets from './widgets/widgets.reducer';
 
 export interface AppState {
-  items: fromItems.ItemsState;
-  widgets: fromWidgets.WidgetsState
+  items: fromItems.ItemsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  items: fromItems.itemsReducer,
-  widgets: fromWidgets.widgetsReducer
+  items: fromItems.itemsReducer
 };
 
 // -------------------------------------------------------------------
@@ -48,40 +45,5 @@ export const selectCurrentItem = createSelector(
   (itemEntities, itemId) => {
     const emptyItem = { id: null, name: '', price: 0, description: '' };
     return itemId ? itemEntities[itemId] : emptyItem;
-  }
-);
-
-// -------------------------------------------------------------------
-// WIDGETS SELECTORS
-// -------------------------------------------------------------------
-export const selectWidgetWidgetsState = createFeatureSelector<fromWidgets.WidgetsState>('widgets');
-
-export const selectWidgetIds = createSelector(
-  selectWidgetWidgetsState,
-  fromWidgets.selectWidgetIds
-);
-export const selectWidgetEntities = createSelector(
-  selectWidgetWidgetsState,
-  fromWidgets.selectWidgetEntities
-);
-export const selectAllWidgets = createSelector(
-  selectWidgetWidgetsState,
-  fromWidgets.selectAllWidgets
-);
-export const selectWidgetTotal = createSelector(
-  selectWidgetWidgetsState,
-  fromWidgets.selectWidgetTotal
-);
-export const selectCurrentWidgetId = createSelector(
-  selectWidgetWidgetsState,
-  fromWidgets.getSelectedWidgetId
-);
-
-export const selectCurrentWidget = createSelector(
-  selectWidgetEntities,
-  selectCurrentWidgetId,
-  (widgetEntities, widgetId) => {
-    const emptyWidget = { id: null, name: '', price: 0, description: '' };
-    return widgetId ? widgetEntities[widgetId] : emptyWidget;
   }
 );

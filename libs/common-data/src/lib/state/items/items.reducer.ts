@@ -16,10 +16,7 @@ export const initialState: ItemsState = adapter.getInitialState({
   selectedItemId: null,
 });
 
-export function itemsReducer(
-  state = initialState,
-  action: ItemsActions
-): ItemsState {
+export function itemsReducer(state = initialState, action: ItemsActions): ItemsState {
   switch (action.type) {
     case ItemsActionTypes.ItemSelected: {
       return Object.assign({}, state, { selectedItemId: action.payload });

@@ -1,14 +1,14 @@
 <div class="container">
   <div class="col-50">
-    <app-widgets-total [widgets]="widgets$ | async"></app-widgets-total>
+    <app-widgets-total [widgets]="widgets"></app-widgets-total>
 
-    <app-widgets-list [widgets]="widgets$ | async"
+    <app-widgets-list [widgets]="widgets"
                       (selected)="selectWidget($event)"
                       (deleted)="deleteWidget($event)">
     </app-widgets-list>
   </div>
 
-  <app-widget-detail class="col-50" [widget]="currentWidget$ | async"
+  <app-widget-detail class="col-50" [widget]="currentWidget"
                      (saved)="saveWidget($event)"
                      (cancelled)="reset($event)">
   </app-widget-detail>
