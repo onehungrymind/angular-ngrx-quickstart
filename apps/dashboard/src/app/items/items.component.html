@@ -8,7 +8,7 @@
     </app-items-list>
   </div>
 
-  <app-item-detail class="col-50" [item]="currentItem"
+  <app-item-detail class="col-50" [item]="currentItem$ | async"
                    (saved)="saveItem($event)"
                    (cancelled)="resetCurrentItem($event)">
   </app-item-detail>

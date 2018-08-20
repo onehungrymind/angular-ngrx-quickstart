@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Item } from './item.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { Item } from './item.model';
 
 const BASE_URL = 'http://localhost:3000/items/';
 const HEADER = {headers: new HttpHeaders({'Content-Type': 'application/json'})};

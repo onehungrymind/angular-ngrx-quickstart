@@ -3,6 +3,7 @@ import { Widget } from '@workspace/common-data';
 
 export enum WidgetsActionTypes {
   WidgetsAction = '[Widgets] Action',
+  WidgetSelected = '[Widgets] Selected',
   LoadWidgets = '[Widgets] Load Data',
   WidgetsLoaded = '[Widgets] Data Loaded',
   AddWidget = '[Widgets] Add Data',
@@ -16,6 +17,12 @@ export enum WidgetsActionTypes {
 export class Widgets implements Action {
   readonly type = WidgetsActionTypes.WidgetsAction;
 }
+
+export class WidgetSelected implements Action {
+  readonly type = WidgetsActionTypes.WidgetSelected;
+  constructor(public payload) { }
+}
+
 export class LoadWidgets implements Action {
   readonly type = WidgetsActionTypes.LoadWidgets;
   constructor() {}
@@ -56,4 +63,14 @@ export class WidgetDeleted implements Action {
   constructor(public payload: Widget) {}
 }
 
-export type WidgetsActions = Widgets | LoadWidgets | WidgetsLoaded | AddWidget | WidgetAdded | UpdateWidget | WidgetUpdated | DeleteWidget | WidgetDeleted;
+export type WidgetsActions = Widgets
+  | WidgetSelected
+  | LoadWidgets
+  | WidgetsLoaded
+  | AddWidget
+  | WidgetAdded
+  | UpdateWidget
+  | WidgetUpdated
+  | DeleteWidget
+  | WidgetDeleted
+;

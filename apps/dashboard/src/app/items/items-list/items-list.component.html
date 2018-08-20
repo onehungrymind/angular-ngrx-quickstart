@@ -8,15 +8,15 @@
     <mat-list>
       <mat-list-item *ngFor="let item of items" (click)="selected.emit(item)" class="record">
         <h3 mat-line>{{item.name}}</h3>
-        <button *ngIf="!readonly" mat-icon-button (click)="deleted.emit(item);$event.stopImmediatePropagation();">
-          <mat-icon>close</mat-icon>
-        </button>
         <p mat-line>
           {{item.description}}
         </p>
         <p>
           {{item.price | currency}}
         </p>
+        <button *ngIf="!readonly" mat-icon-button (click)="deleted.emit(item);$event.stopImmediatePropagation();">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

@@ -16,6 +16,9 @@ export const reducers: ActionReducerMap<AppState> = {
   widgets: fromWidgets.widgetsReducer
 };
 
+// -------------------------------------------------------------------
+// ITEMS SELECTORS
+// -------------------------------------------------------------------
 export const selectItemItemsState = createFeatureSelector<fromItems.ItemsState>('items');
 
 export const selectItemIds = createSelector(
@@ -42,9 +45,15 @@ export const selectCurrentItemId = createSelector(
 export const selectCurrentItem = createSelector(
   selectItemEntities,
   selectCurrentItemId,
-  (itemEntities, itemId) => itemEntities[itemId]
+  (itemEntities, itemId) => {
+    const emptyItem = { id: null, name: '', price: 0, description: '' };
+    return itemId ? itemEntities[itemId] : emptyItem;
+  }
 );
 
+// -------------------------------------------------------------------
+// WIDGETS SELECTORS
+// -------------------------------------------------------------------
 export const selectWidgetWidgetsState = createFeatureSelector<fromWidgets.WidgetsState>('widgets');
 
 export const selectWidgetIds = createSelector(
@@ -71,5 +80,8 @@ export const selectCurrentWidgetId = createSelector(
 export const selectCurrentWidget = createSelector(
   selectWidgetEntities,
   selectCurrentWidgetId,
-  (widgetEntities, widgetId) => widgetEntities[widgetId]
+  (widgetEntities, widgetId) => {
+    const emptyWidget = { id: null, name: '', price: 0, description: '' };
+    return widgetId ? widgetEntities[widgetId] : emptyWidget;
+  }
 );

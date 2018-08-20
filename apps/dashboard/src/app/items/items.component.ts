@@ -9,7 +9,7 @@ import { Item, ItemsFacade } from '@workspace/common-data';
 })
 export class ItemsComponent implements OnInit {
   items$: Observable<Item[]> = this.itemsFacade.allItems$;
-  currentItem: Item;
+  currentItem$: Observable<Item> = this.itemsFacade.currentItem$;
 
   constructor(private itemsFacade: ItemsFacade,) { }
 
@@ -20,11 +20,11 @@ export class ItemsComponent implements OnInit {
   }
 
   resetCurrentItem() {
-    this.currentItem = { id: null, name: '', price: 0, description: '' };
+    this.selectItem({id: null});
   }
 
   selectItem(item) {
-    this.currentItem = item;
+    this.itemsFacade.selectItem(item.id);
   }
 
   saveItem(item) {

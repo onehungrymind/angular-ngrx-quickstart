@@ -1,5 +1,5 @@
 export interface Widget {
-  id: number;
+  id: string;
   name: string;
   price: number;
   description?: string;

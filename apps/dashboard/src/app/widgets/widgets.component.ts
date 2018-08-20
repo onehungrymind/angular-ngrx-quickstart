@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class WidgetsComponent implements OnInit {
   widgets$: Observable<Widget[]> = this.widgetsFacade.allWidgets$;
-  currentWidget: Widget;
+  currentWidget$: Observable<Widget> = this.widgetsFacade.currentWidget$;
 
   constructor(private widgetsFacade: WidgetsFacade) { }
 
@@ -20,11 +20,11 @@ export class WidgetsComponent implements OnInit {
   }
 
   reset() {
-    this.currentWidget = { id: null, name: '', price: 0, description: ''};
+    this.selectWidget({id: null});
   }
 
   selectWidget(widget) {
-    this.currentWidget = widget;
+    this.widgetsFacade.selectWidget(widget.id);
   }
 
   saveWidget(widget) {
