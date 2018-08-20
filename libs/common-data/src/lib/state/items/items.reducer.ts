@@ -1,6 +1,7 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Item } from '@workspace/common-data';
+
 import { ItemsActions, ItemsActionTypes } from './items.actions';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 /**
  * Interface to the part of the Store containing ItemsState

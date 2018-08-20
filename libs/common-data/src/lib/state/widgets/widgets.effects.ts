@@ -3,6 +3,8 @@ import { Actions, Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { map } from 'rxjs/operators';
 
+import { Widget } from '../../core/widgets/widget.model';
+import { WidgetsService } from '../../core/widgets/widgets.service';
 import {
   AddWidget,
   DeleteWidget,
@@ -12,11 +14,9 @@ import {
   WidgetDeleted,
   WidgetsActionTypes,
   WidgetsLoaded,
-  WidgetUpdated
+  WidgetUpdated,
 } from './widgets.actions';
-import { Widget } from '../../core/widgets/widget.model';
 import { WidgetsState } from './widgets.reducer';
-import { WidgetsService } from '../../core/widgets/widgets.service';
 
 @Injectable({providedIn: 'root'})
 export class WidgetsEffects {

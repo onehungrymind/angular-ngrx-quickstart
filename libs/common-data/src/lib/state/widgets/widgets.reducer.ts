@@ -1,6 +1,7 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Widget } from '@workspace/common-data';
+
 import { WidgetsActions, WidgetsActionTypes } from './widgets.actions';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 /**
  * Interface to the part of the Store containing WidgetsState
