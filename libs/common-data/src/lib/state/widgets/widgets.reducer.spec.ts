@@ -1,5 +1,5 @@
 import { WidgetsLoaded } from './widgets.actions';
-import { widgetsReducer, initialState } from './widgets.reducer';
+import { initialState, widgetsReducer } from './widgets.reducer';
 
 describe('widgetsReducer', () => {
   it('should work', () => {

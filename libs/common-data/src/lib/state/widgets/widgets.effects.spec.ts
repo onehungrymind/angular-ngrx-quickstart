@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { StoreModule } from '@ngrx/store';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { StoreModule } from '@ngrx/store';
 import { DataPersistence } from '@nrwl/nx';
 import { hot } from '@nrwl/nx/testing';
-
-import { WidgetsEffects } from './widgets.effects';
-import { LoadWidgets, WidgetsLoaded } from './widgets.actions';
-
 import { Observable } from 'rxjs';
+
+import { LoadWidgets, WidgetsLoaded } from './widgets.actions';
+import { WidgetsEffects } from './widgets.effects';
 
 describe('WidgetsEffects', () => {
   let actions$: Observable<any>;

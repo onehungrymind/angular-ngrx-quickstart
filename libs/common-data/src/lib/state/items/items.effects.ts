@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import {
-  ItemsActions,
-  ItemsActionTypes,
-  LoadItems,
-  ItemsLoaded, ItemUpdated, ItemDeleted, AddItem, UpdateItem, DeleteItem, ItemAdded
-} from './items.actions';
-import { ItemsState } from './items.reducer';
 import { DataPersistence } from '@nrwl/nx';
-import { ItemsService } from '../items/items.service';
 import { map } from 'rxjs/operators';
-import { Item } from '../items/item.model';
 
-@Injectable()
+import {
+  AddItem,
+  DeleteItem,
+  ItemAdded,
+  ItemDeleted,
+  ItemsActionTypes,
+  ItemsLoaded,
+  ItemUpdated,
+  LoadItems,
+  UpdateItem
+} from './items.actions';
+import { Item } from '../../core/items/item.model';
+import { ItemsState } from './items.reducer';
+import { ItemsService } from '../../core/items/items.service';
+
+@Injectable({providedIn: 'root'})
 export class ItemsEffects {
   @Effect() effect$ = this.actions$.ofType(ItemsActionTypes.ItemsAction);
 

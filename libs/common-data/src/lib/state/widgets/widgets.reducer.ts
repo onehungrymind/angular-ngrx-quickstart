@@ -1,24 +1,14 @@
-import { WidgetsActions, WidgetsActionTypes } from './widgets.actions';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Widget } from '@workspace/common-data';
 
-/**
- * Interface for the 'Widgets' data used in
- *  - WidgetsState, and
- *  - widgetsReducer
- */
-export interface Widget {
-  id: number;
-  name: string;
-  price: number;
-  description?: string;
-}
+import { WidgetsActions, WidgetsActionTypes } from './widgets.actions';
 
 /**
  * Interface to the part of the Store containing WidgetsState
  * and other information related to WidgetsData.
  */
 export interface WidgetsState extends EntityState<Widget> {
-  selectedWidgetId: number | null;
+  selectedWidgetId: string | null;
 }
 
 export const adapter: EntityAdapter<Widget> = createEntityAdapter<Widget>();
@@ -32,6 +22,9 @@ export function widgetsReducer(
   action: WidgetsActions
 ): WidgetsState {
   switch (action.type) {
+    case WidgetsActionTypes.WidgetSelected: {
+      return Object.assign({}, state, { selectedWidgetId: action.payload });
+    }
 
     case WidgetsActionTypes.WidgetsLoaded: {
       return adapter.addAll(action.payload, state);

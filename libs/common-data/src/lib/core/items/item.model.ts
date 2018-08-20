@@ -1,5 +1,5 @@
-export interface Widget {
-  id: number;
+export interface Item {
+  id: string;
   name: string;
   price: number;
   description?: string;

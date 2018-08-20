@@ -1,5 +1,5 @@
 import { ItemsLoaded } from './items.actions';
-import { itemsReducer, initialState } from './items.reducer';
+import { initialState, itemsReducer } from './items.reducer';
 
 fdescribe('itemsReducer', () => {
   it('should load state', () => {

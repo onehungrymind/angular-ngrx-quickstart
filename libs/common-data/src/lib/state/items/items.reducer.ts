@@ -1,24 +1,14 @@
-import { ItemsActions, ItemsActionTypes } from './items.actions';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Item } from '@workspace/common-data';
 
-/**
- * Interface for the 'Items' data used in
- *  - ItemsState, and
- *  - itemsReducer
- */
-export interface Item {
-  id: number;
-  name: string;
-  price: number;
-  description?: string;
-}
+import { ItemsActions, ItemsActionTypes } from './items.actions';
 
 /**
  * Interface to the part of the Store containing ItemsState
  * and other information related to ItemsData.
  */
 export interface ItemsState extends EntityState<Item> {
-  selectedItemId: number | null;
+  selectedItemId: string | null;
 }
 
 export const adapter: EntityAdapter<Item> = createEntityAdapter<Item>();
@@ -32,6 +22,9 @@ export function itemsReducer(
   action: ItemsActions
 ): ItemsState {
   switch (action.type) {
+    case ItemsActionTypes.ItemSelected: {
+      return Object.assign({}, state, { selectedItemId: action.payload });
+    }
 
     case ItemsActionTypes.ItemsLoaded: {
       return adapter.addAll(action.payload, state);
@@ -70,4 +63,3 @@ export const selectAllItems = selectAll;
 
 // select the total item count
 export const selectItemTotal = selectTotal;
-
