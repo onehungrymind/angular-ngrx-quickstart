@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, ItemsFacade, Widget, WidgetsFacade } from '@workspace/common-data';
+import { Item, ItemsFacade } from '@workspace/common-data';
 import { Observable } from 'rxjs';
 
 @Component({
