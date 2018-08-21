@@ -3,11 +3,13 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { StoreModule } from '@ngrx/store';
 import { DataPersistence } from '@nrwl/nx';
 import { cold, hot } from '@nrwl/nx/testing';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 import { AddItem, DeleteItem, ItemAdded, ItemDeleted, ItemsLoaded, ItemUpdated, LoadItems, UpdateItem } from './items.actions';
 import { ItemsEffects } from './items.effects';
-import { Item, ItemsService } from '@workspace/common-data';
+import { ItemsService } from '../../core/items/items.service';
+import { Item } from '../../core/items/item.model';
 
 class ItemsServiceMock {
   all() {}
@@ -47,6 +49,16 @@ fdescribe('ItemsEffects', () => {
       expect(effects$.loadItems$).toBeObservable(expected$);
       expect(itemsService.all).toHaveBeenCalled();
     });
+
+    it('should log errors', () => {
+      spyOn(itemsService, 'all').and.returnValue(throwError('That did not go well...'));
+      spyOn(console, 'error').and.callThrough();
+
+      actions$ = hot('-a-|', { a: new LoadItems() });
+      effects$.loadItems$
+        .pipe(finalize(() => expect(console.error).toHaveBeenCalledWith('Error', 'That did not go well...')))
+        .subscribe();
+    });
   });
 
   describe('`addItem$`', () => {
@@ -60,6 +72,16 @@ fdescribe('ItemsEffects', () => {
 
       expect(effects$.addItem$).toBeObservable(expected$);
       expect(itemsService.create).toHaveBeenCalledWith(item);
+    });
+
+    it('should log errors', () => {
+      spyOn(itemsService, 'create').and.returnValue(throwError('That did not go well...'));
+      spyOn(console, 'error').and.callThrough();
+
+      actions$ = hot('-a-|', { a: new AddItem({} as Item) });
+      effects$.addItem$
+        .pipe(finalize(() => expect(console.error).toHaveBeenCalledWith('Error', 'That did not go well...')))
+        .subscribe();
     });
   });
 
@@ -75,6 +97,16 @@ fdescribe('ItemsEffects', () => {
       expect(effects$.updateItem$).toBeObservable(expected$);
       expect(itemsService.update).toHaveBeenCalledWith(item);
     });
+
+    it('should log errors', () => {
+      spyOn(itemsService, 'update').and.returnValue(throwError('That did not go well...'));
+      spyOn(console, 'error').and.callThrough();
+
+      actions$ = hot('-a-|', { a: new UpdateItem({} as Item) });
+      effects$.updateItem$
+        .pipe(finalize(() => expect(console.error).toHaveBeenCalledWith('Error', 'That did not go well...')))
+        .subscribe();
+    });
   });
 
   describe('`deleteItem$`', () => {
@@ -87,6 +119,16 @@ fdescribe('ItemsEffects', () => {
 
       expect(effects$.deleteItem$).toBeObservable(expected$);
       expect(itemsService.delete).toHaveBeenCalledWith(item);
+    });
+
+    it('should log errors', () => {
+      spyOn(itemsService, 'delete').and.returnValue(throwError('That did not go well...'));
+      spyOn(console, 'error').and.callThrough();
+
+      actions$ = hot('-a-|', { a: new DeleteItem({} as Item) });
+      effects$.deleteItem$
+        .pipe(finalize(() => expect(console.error).toHaveBeenCalledWith('Error', 'That did not go well...')))
+        .subscribe();
     });
   });
 });
