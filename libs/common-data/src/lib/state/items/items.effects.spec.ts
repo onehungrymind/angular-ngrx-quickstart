@@ -10,15 +10,9 @@ import { AddItem, DeleteItem, ItemAdded, ItemDeleted, ItemsLoaded, ItemUpdated, 
 import { ItemsEffects } from './items.effects';
 import { ItemsService } from '../../core/items/items.service';
 import { Item } from '../../core/items/item.model';
+import { ItemsServiceStub } from '../../core/items/items.service.stub';
 
-class ItemsServiceMock {
-  all() {}
-  create(item) {}
-  update(item) {}
-  delete(item) {}
-}
-
-fdescribe('ItemsEffects', () => {
+describe('ItemsEffects', () => {
   let actions$: Observable<any>;
   let effects$: ItemsEffects;
   let itemsService: ItemsService;
@@ -30,7 +24,7 @@ fdescribe('ItemsEffects', () => {
         ItemsEffects,
         DataPersistence,
         provideMockActions(() => actions$),
-        {provide: ItemsService, useClass: ItemsServiceMock}
+        {provide: ItemsService, useClass: ItemsServiceStub}
       ]
     });
 
