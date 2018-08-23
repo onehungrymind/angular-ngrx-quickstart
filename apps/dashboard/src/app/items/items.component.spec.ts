@@ -3,7 +3,7 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 
 import { ItemsComponent } from './items.component';
-import { ItemsService } from '../core';
+import { ItemsService } from '@workspace/common-data';
 
 class ItemsServiceStub {}
 

@@ -27,9 +27,9 @@ describe('WidgetsEffects', () => {
 
   describe('someEffect', () => {
     it('should work', () => {
-      actions$ = hot('-a-|', { a: new LoadWidgets({}) });
+      actions$ = hot('-a-|', { a: new LoadWidgets() });
       expect(effects$.loadWidgets$).toBeObservable(
-        hot('-a-|', { a: new WidgetsLoaded({}) })
+        hot('-a-|', { a: new WidgetsLoaded([]) })
       );
     });
   });
