@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend for the angular-ngrx-quickstart",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "json-server api/db.json --watch"
+  },
+  "dependencies": {
+    "json-server": "^0.14.0"
+  }
+}
