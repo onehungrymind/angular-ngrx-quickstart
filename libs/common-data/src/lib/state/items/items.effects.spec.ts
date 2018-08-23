@@ -12,7 +12,7 @@ import { ItemsService } from '../../core/items/items.service';
 import { Item } from '../../core/items/item.model';
 import { ItemsServiceStub } from '../../core/items/items.service.stub';
 
-describe('ItemsEffects', () => {
+fdescribe('ItemsEffects', () => {
   let actions$: Observable<any>;
   let effects$: ItemsEffects;
   let itemsService: ItemsService;

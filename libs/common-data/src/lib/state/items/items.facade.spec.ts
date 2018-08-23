@@ -16,7 +16,7 @@ interface TestSchema {
   'items' : ItemsState
 }
 
-describe('ItemsFacade', () => {
+fdescribe('ItemsFacade', () => {
   let facade: ItemsFacade;
   let store: Store<TestSchema>;
   let createItem;

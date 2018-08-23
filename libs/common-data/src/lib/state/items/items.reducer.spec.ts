@@ -4,7 +4,7 @@ import { Action } from '@ngrx/store';
 import { Item } from '@workspace/common-data';
 import { selectCurrentItem, selectCurrentItemId } from '../index';
 
-describe('itemsReducer', () => {
+fdescribe('itemsReducer', () => {
   it('should return state with unknown action', () => {
     const action = {type: 'DoesNotExist', payload: 'Sample'} as Action;
     const actual = itemsReducer(initialState, action as any);
