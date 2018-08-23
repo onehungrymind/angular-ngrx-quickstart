@@ -14,13 +14,14 @@ export class ItemsFacade {
   allItems$ = this.store.pipe(select(selectAllItems));
   currentItem$ = this.store.pipe(select(selectCurrentItem));
 
-  mutations$ = this.actions$.pipe(
-    filter(action =>
-      action.type === ItemsActionTypes.AddItem
-      || action.type === ItemsActionTypes.UpdateItem
-      || action.type === ItemsActionTypes.DeleteItem
-    )
-  );
+  mutations$ = this.actions$
+    .pipe(
+      filter(action =>
+        action.type === ItemsActionTypes.AddItem
+        || action.type === ItemsActionTypes.UpdateItem
+        || action.type === ItemsActionTypes.DeleteItem
+      )
+    );
 
   constructor(private store: Store<ItemsState>, private actions$: ActionsSubject) {}
 

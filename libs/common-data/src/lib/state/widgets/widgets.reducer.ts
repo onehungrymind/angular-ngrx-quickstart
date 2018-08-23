@@ -1,3 +1,4 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Widget } from '@workspace/common-data';
 
 const initialWidgets = [
