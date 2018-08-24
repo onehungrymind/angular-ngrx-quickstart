@@ -1,0 +1,10 @@
+.row {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+h1 {
+  flex-basis: 100%;
+  padding: 10px;
+}

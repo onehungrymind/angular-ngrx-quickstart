@@ -86,5 +86,25 @@
       "price": 700,
       "description": "This is a violet widget"
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Jonathan Garvey",
+      "items": ["7", "6", "5"],
+      "widgets": ["1", "2", "3"]
+    },
+    {
+      "id": "2",
+      "name": "Lukas Ruebbelke",
+      "items": ["4", "3"],
+      "widgets": ["4", "5"]
+    },
+    {
+      "id": "3",
+      "name": "Rob Wormald",
+      "items": ["2", "1"],
+      "widgets": ["6", "7"]
+    }
   ]
 }
