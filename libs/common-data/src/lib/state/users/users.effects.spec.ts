@@ -28,7 +28,7 @@ describe('UsersEffects', () => {
 
   describe('someEffect', () => {
     it('should work', () => {
-      actions$ = hot('-a-|', { a: new LoadUsers({}) });
+      actions$ = hot('-a-|', { a: new LoadUsers() });
       expect(effects$.loadUsers$).toBeObservable(
         hot('-a-|', { a: new UsersLoaded({}) })
       );
