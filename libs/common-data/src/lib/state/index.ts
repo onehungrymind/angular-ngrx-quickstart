@@ -5,15 +5,18 @@ import {
 } from '@ngrx/store';
 import * as fromItems from './items/items.reducer';
 import * as fromWidgets from './widgets/widgets.reducer';
+import * as fromUsers from './users/users.reducer';
 
 export interface AppState {
   items: fromItems.ItemsState;
-  widgets: fromWidgets.WidgetsState
+  widgets: fromWidgets.WidgetsState,
+  users: fromUsers.UsersState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
   items: fromItems.itemsReducer,
-  widgets: fromWidgets.widgetsReducer
+  widgets: fromWidgets.widgetsReducer,
+  users: fromUsers.usersReducer
 };
 
 // -------------------------------------------------------------------
@@ -83,5 +86,28 @@ export const selectCurrentWidget = createSelector(
   (widgetEntities, widgetId) => {
     const emptyWidget = { id: null, name: '', price: 0, description: '' };
     return widgetId ? widgetEntities[widgetId] : emptyWidget;
+  }
+);
+
+// -------------------------------------------------------------------
+// USERS SELECTORS
+// -------------------------------------------------------------------
+export const selectUserUsersState = createFeatureSelector<fromUsers.UsersState>('users');
+
+export const selectAllUsers = createSelector(
+  selectUserUsersState,
+  fromUsers.selectAllUsers
+);
+
+export const selectUsersDetails = createSelector(
+  selectAllUsers,
+  selectItemEntities,
+  selectWidgetEntities,
+  (users, itemEntities, widgetEntities) => {
+    return users.map(u => ({
+      ...u,
+      items: u.items.map(itemId => itemEntities[itemId]),
+      widgets: u.widgets.map(widgetId => widgetEntities[widgetId])
+    }));
   }
 );
