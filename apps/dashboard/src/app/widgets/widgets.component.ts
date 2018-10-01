@@ -34,7 +34,7 @@ export class WidgetsComponent implements OnInit {
   }
 
   getWidgets() {
-    this.store.dispatch(new LoadWidgets(initialWidgets));
+    this.store.dispatch(new LoadWidgets());
   }
 
   saveWidget(widget) {

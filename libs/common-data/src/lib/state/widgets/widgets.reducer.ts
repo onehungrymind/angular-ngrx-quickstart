@@ -38,9 +38,9 @@ export function widgetsReducer(
   switch (action.type) {
     case WidgetsActionTypes.WidgetSelected:
       return Object.assign({}, state, { selectedWidgetId: action.payload });
-    case WidgetsActionTypes.LoadWidgets:
+    case WidgetsActionTypes.WidgetsLoaded:
       return adapter.addAll(action.payload, state);
-    case WidgetsActionTypes.AddWidget:
+    case WidgetsActionTypes.WidgetAdded:
       return adapter.addOne(action.payload, state);
     case WidgetsActionTypes.UpdateWidget:
       return adapter.upsertOne(action.payload, state);
