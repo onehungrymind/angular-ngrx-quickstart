@@ -1,10 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Widget } from '@workspace/common-data';
 import { Action } from '@ngrx/store';
-
-interface WidgetsAction extends Action {
-  payload: any;
-}
+import { WidgetsActions, WidgetsActionTypes } from './widgets.actions';
 
 const initialWidgets = [
   {
@@ -45,25 +42,25 @@ export const initialState: WidgetsState = {
 
 export function widgetsReducer(
   state = initialState,
-  action: WidgetsAction
+  action: WidgetsActions
 ): WidgetsState {
   switch (action.type) {
-    case 'select':
+    case WidgetsActionTypes.WidgetSelected:
       return {
-        selectedWidgetId: action.payload.id,
+        selectedWidgetId: action.payload,
         widgets: state.widgets
       };
-    case 'create':
+    case WidgetsActionTypes.AddWidget:
       return {
         selectedWidgetId: state.selectedWidgetId,
         widgets: createWidget(state.widgets, action.payload)
       };
-    case 'update':
+    case WidgetsActionTypes.UpdateWidget:
       return {
         selectedWidgetId: state.selectedWidgetId,
         widgets: updateWidget(state.widgets, action.payload)
       };
-    case 'delete':
+    case WidgetsActionTypes.DeleteWidget:
       return {
         selectedWidgetId: state.selectedWidgetId,
         widgets: deleteWidget(state.widgets, action.payload)

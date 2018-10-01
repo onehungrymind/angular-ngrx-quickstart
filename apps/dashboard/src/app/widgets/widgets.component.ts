@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Widget, WidgetsService, WidgetsState } from '@workspace/common-data';
+import { Widget, WidgetsState, AddWidget, UpdateWidget, DeleteWidget } from '@workspace/common-data';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -51,17 +51,17 @@ export class WidgetsComponent implements OnInit {
   }
 
   createWidget(widget) {
-    this.store.dispatch({ type: 'create', payload: widget });
+    this.store.dispatch(new AddWidget(widget));
     this.resetCurrentWidget();
   }
 
   updateWidget(widget) {
-    this.store.dispatch({ type: 'update', payload: widget });
+    this.store.dispatch(new UpdateWidget(widget));
     this.resetCurrentWidget();
   }
 
   deleteWidget(widget) {
-    this.store.dispatch({ type: 'delete', payload: widget });
+    this.store.dispatch(new DeleteWidget(widget));
     this.resetCurrentWidget();
   }
 }
