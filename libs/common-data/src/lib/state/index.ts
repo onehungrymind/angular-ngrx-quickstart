@@ -47,3 +47,23 @@ export const selectCurrentItem = createSelector(
     return itemId ? itemEntities[itemId] : emptyItem;
   }
 );
+
+// -------------------------------------------------------------------
+// WIDGETS SELECTORS
+// -------------------------------------------------------------------
+export const selectWidgetsState = createFeatureSelector<fromWidgets.WidgetsState>('widgets');
+
+export const selectWidgetIds = createSelector(
+  selectWidgetsState,
+  fromWidgets.selectWidgetIds
+)
+
+export const selectWidgetEntities = createSelector(
+  selectWidgetsState,
+  fromWidgets.selectWidgetEntities
+)
+
+export const selectAllWidgets = createSelector(
+  selectWidgetsState,
+  fromWidgets.selectAllWidgets
+)
