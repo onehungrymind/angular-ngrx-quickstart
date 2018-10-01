@@ -12,4 +12,4 @@ export { WidgetsState, initialWidgets } from './lib/state/widgets/widgets.reduce
 
 export { SelectWidget, AddWidget, UpdateWidget, DeleteWidget, LoadWidgets } from './lib/state/widgets/widgets.actions';
 
-export { selectAllWidgets } from './lib/state';
+export { selectAllWidgets, selectCurrentWidget } from './lib/state';

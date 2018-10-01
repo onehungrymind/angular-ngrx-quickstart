@@ -67,3 +67,17 @@ export const selectAllWidgets = createSelector(
   selectWidgetsState,
   fromWidgets.selectAllWidgets
 )
+
+export const selectCurrentWidgetId = createSelector(
+  selectWidgetsState,
+  fromWidgets.getSelectedWidgetId
+);
+
+export const selectCurrentWidget = createSelector(
+  selectWidgetEntities,
+  selectCurrentWidgetId,
+  (widgetEntities, widgetId) => {
+    const emptyWidget = { id: null, name: '', price: 0, description: '' };
+    return widgetId ? widgetEntities[widgetId] : emptyWidget;
+  }
+);

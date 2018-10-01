@@ -8,8 +8,8 @@
     </app-widgets-list>
   </div>
 
-  <app-widget-detail class="col-50" [widget]="currentWidget"
-                     (saved)="saveWidget($event)"
-                     (cancelled)="reset($event)">
+  <app-widget-detail class="col-50" [widget]="currentWidget$ | async"
+                  (saved)="saveWidget($event)"
+                  (cancelled)="reset($event)">
   </app-widget-detail>
 </div>

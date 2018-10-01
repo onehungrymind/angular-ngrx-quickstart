@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Widget, WidgetsState, AddWidget, UpdateWidget, DeleteWidget, LoadWidgets, initialWidgets, selectAllWidgets } from '@workspace/common-data';
+import { Widget, WidgetsState, AddWidget, UpdateWidget, DeleteWidget, LoadWidgets, selectAllWidgets, SelectWidget } from '@workspace/common-data';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class WidgetsComponent implements OnInit {
   widgets$: Observable<Widget[]>;
-  currentWidget: Widget;
+  currentWidget$: Observable<Widget>;
 
   constructor(private store: Store<WidgetsState>) {
     this.widgets$ = store.pipe(select(selectAllWidgets));
@@ -22,11 +22,11 @@ export class WidgetsComponent implements OnInit {
   }
 
   resetCurrentWidget() {
-    this.currentWidget = { id: null, name: '', price: 0, description: '' };
+    this.selectWidget({ id: null });
   }
 
   selectWidget(widget) {
-    this.currentWidget = widget;
+    this.store.dispatch(new SelectWidget(widget.id));
   }
 
   reset(widget) {
