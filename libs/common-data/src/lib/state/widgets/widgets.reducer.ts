@@ -1,6 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Widget } from '@workspace/common-data';
-import { Action } from '@ngrx/store';
 import { WidgetsActions, WidgetsActionTypes } from './widgets.actions';
 
 export const initialWidgets = [
@@ -23,12 +22,6 @@ export const initialWidgets = [
     description: "This is a yellow widget"
   },
 ];
-
-const createWidget = (widgets, widget) => [...widgets, widget];
-const updateWidget = (widgets, widget) => widgets.map(w => {
-  return w.id === widget.id ? Object.assign({}, widget) : w;
-});
-const deleteWidget = (widgets, widget) => widgets.filter(w => widget.id !== w.id);
 
 export interface WidgetsState extends EntityState<Widget> {
   selectedWidgetId: string | null;
