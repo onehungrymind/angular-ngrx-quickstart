@@ -1,11 +1,22 @@
-import { Effect, Actions } from '@ngrx/effects';
-import { WidgetsActionTypes, LoadWidgets, WidgetsLoaded, AddWidget, WidgetAdded } from './widgets.actions';
-import { WidgetsState } from './widgets.reducer';
-import { map } from 'rxjs/operators';
-import { Widget } from '../../core/widgets/widget.model';
-import { DataPersistence } from '@nrwl/nx';
-import { WidgetsService } from '../../core/widgets/widgets.service';
 import { Injectable } from '@angular/core';
+import { Actions, Effect } from '@ngrx/effects';
+import { DataPersistence } from '@nrwl/nx';
+import { map } from 'rxjs/operators';
+
+import { Widget } from './../../core/widgets/widget.model';
+import { WidgetsService } from './../../core/widgets/widgets.service';
+import {
+  AddWidget,
+  DeleteWidget,
+  LoadWidgets,
+  UpdateWidget,
+  WidgetAdded,
+  WidgetDeleted,
+  WidgetsActionTypes,
+  WidgetsLoaded,
+  WidgetUpdated,
+} from './widgets.actions';
+import { WidgetsState } from './widgets.reducer';
 
 @Injectable({ providedIn: 'root' })
 export class WidgetsEffects {
@@ -25,6 +36,26 @@ export class WidgetsEffects {
       return this.widgetsService.create(action.payload).pipe(map((res: Widget) => new WidgetAdded(res)))
     },
     onError: (action: AddWidget, error) => {
+      console.error('Error', error);
+    }
+  });
+
+  @Effect()
+  updateWidget$ = this.dataPersistence.pessimisticUpdate(WidgetsActionTypes.UpdateWidget, {
+    run: (action: UpdateWidget, state: WidgetsState) => {
+      return this.widgetsService.update(action.payload).pipe(map((res: Widget) => new WidgetUpdated(res)))
+    },
+    onError: (action: UpdateWidget, error) => {
+      console.error('Error', error);
+    }
+  });
+
+  @Effect()
+  deleteWidget$ = this.dataPersistence.pessimisticUpdate(WidgetsActionTypes.DeleteWidget, {
+    run: (action: DeleteWidget, state: WidgetsState) => {
+      return this.widgetsService.delete(action.payload).pipe(map((res: Widget) => new WidgetDeleted(res)))
+    },
+    onError: (action: DeleteWidget, error) => {
       console.error('Error', error);
     }
   });

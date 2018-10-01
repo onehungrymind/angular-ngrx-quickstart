@@ -8,7 +8,9 @@ export enum WidgetsActionTypes {
   AddWidget = '[Widgets] Add Data',
   WidgetAdded = '[Widgets] Data Added',
   UpdateWidget = '[Widgets] Update Data',
-  DeleteWidget = '[Widgets] Delete Data'
+  WidgetUpdated = '[Widgets] Data Updated',
+  DeleteWidget = '[Widgets] Delete Data',
+  WidgetDeleted = '[Widgets] Delete Data'
 }
 
 export class SelectWidget implements Action {
@@ -18,7 +20,6 @@ export class SelectWidget implements Action {
 
 export class LoadWidgets implements Action {
   readonly type = WidgetsActionTypes.LoadWidgets;
-  constructor() {}
 }
 
 export class WidgetsLoaded implements Action {
@@ -41,8 +42,18 @@ export class UpdateWidget implements Action {
   constructor(public payload: Widget) { }
 }
 
+export class WidgetUpdated implements Action {
+  readonly type = WidgetsActionTypes.WidgetUpdated;
+  constructor(public payload: Widget) { }
+}
+
 export class DeleteWidget implements Action {
   readonly type = WidgetsActionTypes.DeleteWidget;
+  constructor(public payload: Widget) { }
+}
+
+export class WidgetDeleted implements Action {
+  readonly type = WidgetsActionTypes.WidgetDeleted;
   constructor(public payload: Widget) { }
 }
 
@@ -52,4 +63,7 @@ export type WidgetsActions = SelectWidget
   | AddWidget
   | WidgetAdded
   | UpdateWidget
-  | DeleteWidget;
+  | WidgetUpdated
+  | DeleteWidget
+  | WidgetDeleted
+  ;
