@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Widget, WidgetsService } from '@workspace/common-data';
+import { select, Store } from '@ngrx/store';
+import { Widget, WidgetsService, WidgetsState } from '@workspace/common-data';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-widgets',
@@ -7,10 +10,19 @@ import { Widget, WidgetsService } from '@workspace/common-data';
   styleUrls: ['./widgets.component.css']
 })
 export class WidgetsComponent implements OnInit {
+  widgets$: Observable<Widget[]>;
   widgets: Widget[];
   currentWidget: Widget;
 
-  constructor(private widgetsService: WidgetsService) { }
+  constructor(
+    private widgetsService: WidgetsService,
+    private store: Store<WidgetsState>
+  ) {
+    this.widgets$ = store.pipe(
+      select('widgets'),
+      map((state: WidgetsState) => state.widgets)
+    );
+  }
 
   ngOnInit() {
     this.getWidgets();

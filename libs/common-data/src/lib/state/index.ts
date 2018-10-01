@@ -1,13 +1,16 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromItems from './items/items.reducer';
+import * as fromWidgets from './widgets/widgets.reducer';
 
 export interface AppState {
-  items: fromItems.ItemsState
+  items: fromItems.ItemsState;
+  widgets: fromWidgets.WidgetsState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  items: fromItems.itemsReducer
+  items: fromItems.itemsReducer,
+  widgets: fromWidgets.widgetsReducer
 };
 
 // -------------------------------------------------------------------

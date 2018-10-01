@@ -1,5 +1,6 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Widget } from '@workspace/common-data';
+import { Action } from '@ngrx/store';
 
 const initialWidgets = [
   {
@@ -27,3 +28,23 @@ const updateWidget = (widgets, widget) => widgets.map(w => {
   return w.id === widget.id ? Object.assign({}, widget) : w;
 });
 const deleteWidget = (widgets, widget) => widgets.filter(w => widget.id !== w.id);
+
+export interface WidgetsState {
+  selectedWidgetId: string | null;
+  widgets: Widget[];
+}
+
+export const initialState: WidgetsState = {
+  selectedWidgetId: null,
+  widgets: initialWidgets
+};
+
+export function widgetsReducer(
+  state = initialState,
+  action: Action
+): WidgetsState {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
