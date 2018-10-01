@@ -11,11 +11,9 @@ import { map } from 'rxjs/operators';
 })
 export class WidgetsComponent implements OnInit {
   widgets$: Observable<Widget[]>;
-  widgets: Widget[];
   currentWidget: Widget;
 
   constructor(
-    private widgetsService: WidgetsService,
     private store: Store<WidgetsState>
   ) {
     this.widgets$ = store.pipe(
@@ -25,7 +23,6 @@ export class WidgetsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getWidgets();
     this.resetCurrentWidget();
   }
 
@@ -42,8 +39,7 @@ export class WidgetsComponent implements OnInit {
   }
 
   getWidgets() {
-    this.widgetsService.all()
-      .subscribe((widgets: Widget[]) => this.widgets = widgets);
+    // Pending
   }
 
   saveWidget(widget) {
@@ -55,26 +51,17 @@ export class WidgetsComponent implements OnInit {
   }
 
   createWidget(widget) {
-    this.widgetsService.create(widget)
-      .subscribe(response => {
-        this.getWidgets();
-        this.resetCurrentWidget();
-      });
+    this.store.dispatch({ type: 'create', payload: widget });
+    this.resetCurrentWidget();
   }
 
   updateWidget(widget) {
-    this.widgetsService.update(widget)
-      .subscribe(response => {
-        this.getWidgets();
-        this.resetCurrentWidget();
-      });
+    this.store.dispatch({ type: 'update', payload: widget });
+    this.resetCurrentWidget();
   }
 
   deleteWidget(widget) {
-    this.widgetsService.delete(widget)
-      .subscribe(response => {
-        this.getWidgets();
-        this.resetCurrentWidget();
-      });
+    this.store.dispatch({ type: 'delete', payload: widget });
+    this.resetCurrentWidget();
   }
 }
