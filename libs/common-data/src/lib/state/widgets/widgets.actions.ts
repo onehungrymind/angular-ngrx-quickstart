@@ -1,8 +1,10 @@
 import { Widget } from '@workspace/common-data';
 import { Action } from '@ngrx/store';
 
+
 export enum WidgetsActionTypes {
   WidgetSelected = '[Widgets] Selected',
+  LoadWidgets = '[Widgets] Load Data',
   AddWidget = '[Widgets] Add Data',
   UpdateWidget = '[Widgets] Update Data',
   DeleteWidget = '[Widgets] Delete Data'
@@ -11,6 +13,11 @@ export enum WidgetsActionTypes {
 export class SelectWidget implements Action {
   readonly type = WidgetsActionTypes.WidgetSelected;
   constructor(public payload) { }
+}
+
+export class LoadWidgets implements Action {
+  readonly type = WidgetsActionTypes.LoadWidgets;
+  constructor(public payload) {}
 }
 
 export class AddWidget implements Action {
@@ -29,6 +36,7 @@ export class DeleteWidget implements Action {
 }
 
 export type WidgetsActions = SelectWidget
+  | LoadWidgets
   | AddWidget
   | UpdateWidget
   | DeleteWidget

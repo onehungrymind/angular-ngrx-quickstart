@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Widget, WidgetsState, AddWidget, UpdateWidget, DeleteWidget } from '@workspace/common-data';
+import { Widget, WidgetsState, AddWidget, UpdateWidget, DeleteWidget, LoadWidgets, initialWidgets } from '@workspace/common-data';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,16 +13,16 @@ export class WidgetsComponent implements OnInit {
   widgets$: Observable<Widget[]>;
   currentWidget: Widget;
 
-  constructor(
-    private store: Store<WidgetsState>
-  ) {
+  constructor(private store: Store<WidgetsState>) {
     this.widgets$ = store.pipe(
       select('widgets'),
-      map((state: WidgetsState) => state.widgets)
+      map((data: WidgetsState) => data.entities),
+      map(data => Object.keys(data).map(k => data[k]))
     );
   }
 
   ngOnInit() {
+    this.getWidgets();
     this.resetCurrentWidget();
   }
 
@@ -39,7 +39,7 @@ export class WidgetsComponent implements OnInit {
   }
 
   getWidgets() {
-    // Pending
+    this.store.dispatch(new LoadWidgets(initialWidgets));
   }
 
   saveWidget(widget) {
